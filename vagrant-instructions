@@ -1,5 +1,5 @@
-Instructions for checking out vagrant file (e.g., for IPython Notebooks and dependencies in the MBVL project)
-20160630 Stace Beaulieu
+Instructions for checking out / using vagrantfile (e.g., for IPython Notebooks and dependencies in the MBVL project)
+20160630, 20160824 Stace Beaulieu
 [Note: these instructions are for Windows 10.]
 
 Download Git for Windows, https://git-scm.com/download/win, and:
@@ -21,19 +21,25 @@ Open Git Bash, type "ls" to figure out what directory you are starting in, then 
 
 Type "git clone " and right-click to paste the URL, return, and then a subfolder (e.g. scipy-talk) is created in Documents
 
-Go into that subfolder "cd scipy-talk" and type "vagrant up" (and then a virtual machine is built with ubuntu linux and a bunch of python libraries are installed)
+[Next set of steps is to run the vagrantfile]
+
+Change directory into that subfolder "cd scipy-talk" and type "vagrant up" (and then a virtual machine is built with ubuntu linux and a bunch of python libraries are installed)
 (FYI, don't use the VirtualBox GUI for Vagrant VMs; those VMs are "headless" and have no GUI) 
 
-From Git Bash, make sure you're in the scipy-talk directory.
-
+Continuing in Git Bash (in the above case, in the scipy-talk directory),
 Type "git pull" to get the latest updates.
 
 Type "vagrant ssh". You will now be logged into the virtual machine and you will get a command prompt.
 
 At the prompt, type "cd /vagrant", return
 
-Then type "./ipn"
+Then type "./ipn" [or see below for multiprocessing]
 The iPython Notebook will start.
 
-Now point your browser to "http://localhost:8888'
+Now point your browser to "http://localhost:8888"
 
+[If you'd like to run a Notebook with multiprocessing, see Joe's Introduction to multiprocessing in iPython notebook: https://gist.github.com/joefutrelle/39edb8b0eb63033ef9bb1069c348954a]
+[Note to check the number of CPUs configured for the Virtual Machine, use text editor to open the vagrantfile. For example, look for a line in the vagrantfile such as vb.cpus="4".]
+[For multiprocessing we will add the "&" symbol to start the Notebook in the background, type "./ipn &", return.]
+[Then start the cluster for a number of CPUs not exceeding what is in vagrantfile, e.g., type "ipcluster start -n 4 &".]
+[Then point your browser to "http://localhost:8888"]
